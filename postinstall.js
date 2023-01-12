@@ -1,5 +1,3 @@
-// part of tinyMCE React installation
-
 const fse = require("fs-extra");
 const path = require("path");
 const topDir = __dirname;
@@ -9,5 +7,3 @@ fse.copySync(
   path.join(topDir, "public", "tinymce"),
   { overwrite: true }
 );
-
-// don't forget to add /public/tinymce/ to gitIgnore.
