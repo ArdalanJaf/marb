@@ -5,6 +5,7 @@ import TinyEditor from "./TinyEditor";
 import createMarkup from "../utils/createMarkup";
 import { selectLang } from "../app/textSlice";
 import { selectEditMode } from "../app/adminSlice";
+import TextOnlyEditor from "./TextOnlyEditor";
 
 export default function About() {
   const { about } = useSelector(selectText);
@@ -13,11 +14,17 @@ export default function About() {
 
   return (
     <div>
-      <h1>About</h1>
+      <h1>
+        {!editMode ? (
+          about.title[lang]
+        ) : (
+          <TextOnlyEditor sectionKey="about" elKey="title" />
+        )}
+      </h1>
       {!editMode ? (
-        <div dangerouslySetInnerHTML={createMarkup(about[lang])}></div>
+        <div dangerouslySetInnerHTML={createMarkup(about.body[lang])}></div>
       ) : (
-        <TinyEditor contentKey="about" />
+        <TinyEditor sectionKey="about" elKey="body" />
       )}
     </div>
   );

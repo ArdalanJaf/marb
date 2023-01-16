@@ -4,18 +4,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectText, setText } from "../app/textSlice";
 import { selectLang } from "../app/textSlice";
 
-export default function TinyEditor({ contentKey }) {
+export default function TinyEditor({ sectionKey, elKey }) {
   const dispatch = useDispatch();
-  // const contents = useSelector((selectText));
   const lang = useSelector(selectLang);
-  // const content = contents[contentKey][lang];
-  const content = useSelector((state) => state.text[contentKey][lang]);
+  const content = useSelector((state) => state.text[sectionKey][elKey][lang]);
 
   const editorRef = useRef(null);
 
   const handleChange = () => {
     dispatch(
-      setText({ key: contentKey, value: editorRef.current.getContent() })
+      setText({ sectionKey, elKey, value: editorRef.current.getContent() })
     );
   };
 
