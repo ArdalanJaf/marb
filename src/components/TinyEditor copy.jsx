@@ -2,15 +2,10 @@ import React, { useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectText, setText } from "../app/textSlice";
-import { selectLang } from "../app/textSlice";
 
 export default function TinyEditor({ contentKey }) {
   const dispatch = useDispatch();
-  // const contents = useSelector((selectText));
-  const lang = useSelector(selectLang);
-  // const content = contents[contentKey][lang];
-  const content = useSelector((state) => state.text[contentKey][lang]);
-
+  const content = useSelector(selectText);
   const editorRef = useRef(null);
 
   const handleChange = () => {
@@ -24,7 +19,7 @@ export default function TinyEditor({ contentKey }) {
       <Editor
         tinymceScriptSrc={process.env.PUBLIC_URL + "/tinymce/tinymce.min.js"}
         onInit={(evt, editor) => (editorRef.current = editor)}
-        value={content}
+        value={content[contentKey]}
         onEditorChange={handleChange}
         inline={true}
         init={{

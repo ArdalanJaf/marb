@@ -2,16 +2,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   lang: "en", // function to check browser language?
-  about: {
-    cr: "<p>Creole creole creole</p>",
-    en: "<p>This is the About data</p>",
-    sp: "<p>Hola me llamo Ardo</p>",
+  en: {
+    about: "<p>This is the About data</p>",
+    extra: "<p>I'm extra</p>",
   },
-  extra: {
-    cr: "<p>CR extra</p>",
-    en: "<p>EN extra</p>",
-    sp: "<p>SP extra</p>",
-  },
+  cr: { about: "<p>Creole creole creole</p>", extra: "<p>extra creole</p>" },
+  sp: { about: "<p>Hola me llamo Ardo</p>", extra: "<p>Soy mas cosas</p>" },
 };
 
 export const textSlice = createSlice({
@@ -21,18 +17,23 @@ export const textSlice = createSlice({
     setText: (state, action) => {
       let copy = {
         ...state,
-        about: { ...state.about },
-        extra: { ...state.extra },
+        en: { ...state.en },
+        sp: { ...state.sp },
+        cr: { ...state.cr },
       };
-      copy[action.payload.key][state.lang] = action.payload.value;
+      copy[state.lang][action.payload.key] = action.payload.value;
       return copy;
     },
     setLang: (state, action) => {
+      // let copy = { ...state, en: { ...state.en }, sp: { ...state.sp } };
+      // copy.lang = state.lang === "en" ? "sp" : "en";
+      // return copy;
       return {
         ...state,
         lang: action.payload,
-        about: { ...state.about },
-        extra: { ...state.extra },
+        en: { ...state.en },
+        sp: { ...state.sp },
+        cr: { ...state.cr },
       };
     },
   },
@@ -44,7 +45,7 @@ export const { setText, setLang } = textSlice.actions;
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 
-export const selectText = (state) => state.text;
+export const selectText = (state) => state.text[state.text.lang];
 export const selectLang = (state) => state.text.lang;
 
 export default textSlice.reducer;

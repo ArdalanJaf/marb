@@ -2,12 +2,12 @@ import React from "react";
 import "./App.css";
 import About from "./components/About";
 import { useDispatch, useSelector } from "react-redux";
-import { setLang } from "./app/textSlice";
 import { setEditMode, selectEditMode } from "./app/adminSlice";
+import LangSelect from "./components/LangSelect";
+import Testimonials from "./components/Testimonials";
 
 function App() {
   const dispatch = useDispatch();
-
   const editMode = useSelector(selectEditMode);
 
   return (
@@ -19,8 +19,9 @@ function App() {
           Edit: {editMode ? "on" : "off"}
         </button>
 
-        <button onClick={() => dispatch(setLang())}>language</button>
+        <LangSelect />
       </div>
+      <Testimonials />
     </div>
   );
 }
