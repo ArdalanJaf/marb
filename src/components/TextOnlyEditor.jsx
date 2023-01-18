@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectText, setText } from "../app/textSlice";
-import { selectLang } from "../app/textSlice";
+import { selectLang } from "../app/generalSlice";
 
 export default function TextOnlyEditor({ sectionKey, elKey }) {
   const dispatch = useDispatch();
@@ -19,6 +19,7 @@ export default function TextOnlyEditor({ sectionKey, elKey }) {
       setText({
         sectionKey,
         elKey,
+        lang,
         value: htmlTagStripper(editorRef.current.getContent()),
       })
     );

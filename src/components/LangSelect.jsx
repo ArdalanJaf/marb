@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setLang } from "../app/textSlice";
+import { setLang, selectLang } from "../app/generalSlice";
 
 export default function LangSelect() {
   const dispatch = useDispatch();
-  const lang = useSelector((state) => state.text.lang);
+  const lang = useSelector(selectLang);
 
   return (
     <select onChange={(e) => dispatch(setLang(e.target.value))} value={lang}>

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { selectText } from "../app/textSlice";
 import TinyEditor from "./TinyEditor";
 import createMarkup from "../utils/createMarkup";
-import { selectLang } from "../app/textSlice";
+import { selectLang } from "../app/generalSlice";
 import { selectEditMode } from "../app/adminSlice";
 import TextOnlyEditor from "./TextOnlyEditor";
 
@@ -12,6 +12,7 @@ export default function About() {
   const lang = useSelector(selectLang);
   const editMode = useSelector(selectEditMode);
 
+  console.log(about.body[lang]);
   return (
     <div>
       <h1>

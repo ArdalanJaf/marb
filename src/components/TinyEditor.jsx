@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectText, setText } from "../app/textSlice";
-import { selectLang } from "../app/textSlice";
+import { selectLang } from "../app/generalSlice";
 
 export default function TinyEditor({ sectionKey, elKey }) {
   const dispatch = useDispatch();
@@ -13,7 +13,12 @@ export default function TinyEditor({ sectionKey, elKey }) {
 
   const handleChange = () => {
     dispatch(
-      setText({ sectionKey, elKey, value: editorRef.current.getContent() })
+      setText({
+        sectionKey,
+        elKey,
+        lang,
+        value: editorRef.current.getContent(),
+      })
     );
   };
 
