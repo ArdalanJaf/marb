@@ -6,11 +6,8 @@ import { selectLang } from "../app/textSlice";
 
 export default function TextOnlyEditor({ sectionKey, elKey }) {
   const dispatch = useDispatch();
-  // const contents = useSelector((selectText));
   const lang = useSelector(selectLang);
-  // const content = contents[contentKey][lang];
   const content = useSelector((state) => state.text[sectionKey][elKey][lang]);
-  console.log(content);
   const editorRef = useRef(null);
 
   function htmlTagStripper(str) {
@@ -18,7 +15,6 @@ export default function TextOnlyEditor({ sectionKey, elKey }) {
   }
 
   const handleChange = () => {
-    // console.log(editorRef.current.getContent());
     dispatch(
       setText({
         sectionKey,
