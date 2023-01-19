@@ -3,7 +3,7 @@ import "./App.css";
 import About from "./components/About";
 import { useDispatch, useSelector } from "react-redux";
 import { setEditMode, selectEditMode } from "./app/adminSlice";
-import { setAllText } from "./app/textSlice";
+import { setContent } from "./app/contentSlice";
 import LangSelect from "./components/LangSelect";
 import Testimonials from "./components/Testimonials";
 import { API_URL } from "./config/API_URL";
@@ -15,11 +15,8 @@ function App() {
 
   const getText = async () => {
     try {
-      const result = await axios.get(API_URL + "/text");
-      console.log(result.data.results);
-
-      let ting = true;
-      if (ting) dispatch(setAllText(result.data.results));
+      const result = await axios.get(API_URL + "/content");
+      dispatch(setContent(result.data.content));
     } catch (error) {
       console.log(error);
     }

@@ -1,22 +1,20 @@
 import React, { useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectText, setText } from "../app/textSlice";
-import { selectLang } from "../app/generalSlice";
+import { setText } from "../app/contentSlice";
+import { keysToObjTool } from "../utils/keysToObjTool";
 
-export default function TinyEditor({ sectionKey, elKey }) {
+export default function TinyEditor({ keys }) {
   const dispatch = useDispatch();
-  const lang = useSelector(selectLang);
-  const content = useSelector((state) => state.text[sectionKey][elKey][lang]);
+  const content = useSelector((state) => state.content);
+  let value = keysToObjTool(content, keys);
 
   const editorRef = useRef(null);
 
   const handleChange = () => {
     dispatch(
       setText({
-        sectionKey,
-        elKey,
-        lang,
+        keys,
         value: editorRef.current.getContent(),
       })
     );
@@ -27,7 +25,7 @@ export default function TinyEditor({ sectionKey, elKey }) {
       <Editor
         tinymceScriptSrc={process.env.PUBLIC_URL + "/tinymce/tinymce.min.js"}
         onInit={(evt, editor) => (editorRef.current = editor)}
-        value={content}
+        value={value}
         onEditorChange={handleChange}
         inline={true}
         init={{
