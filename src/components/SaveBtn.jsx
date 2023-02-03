@@ -1,25 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectContent } from "../app/contentSlice";
 import axios from "axios";
 import { API_URL } from "../config/API_URL";
 import flattenObj from "../utils/flattenObj";
 import { resetEditTracker } from "../app/contentSlice";
+import { RaceBy } from "@uiball/loaders";
 
 export default function SaveBtn() {
   const dispatch = useDispatch();
   const content = useSelector(selectContent);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleSave = async () => {
     try {
+      setIsLoading(true);
       let editedContent = getEditedContent(content);
       let res = await axios.post(API_URL + "/content", editedContent);
-      if (res.data.status === 1) {
+      setIsLoading(false);
+      if (!res.data.error) {
         dispatch(resetEditTracker());
-        // saved notification
+      } else {
+        setErrorMsg(res.data.error);
       }
     } catch (error) {
-      console.log(error);
+      setErrorMsg(error);
     }
   };
 
@@ -32,15 +38,23 @@ export default function SaveBtn() {
         });
       }
     });
-    // return flattenObj(contentObj).filter((c) => {
-    //   return idsOfEdited[key].includes(c.id) === true;
-    // });
     return editedContent;
+  };
+
+  const hasEdited = (obj) => {
+    let allEditTracks = flattenObj(obj).flat();
+    return allEditTracks.length > 0 ? true : false;
   };
 
   return (
     <div>
-      <button onClick={() => handleSave()}>Save</button>
+      <button
+        onClick={() => handleSave()}
+        disabled={hasEdited(content.editedTracker) ? false : true}
+      >
+        {isLoading ? <RaceBy size={35} color="#231F20" /> : "Save"}
+      </button>
+      {errorMsg && <p>{errorMsg}</p>}
     </div>
   );
 }
