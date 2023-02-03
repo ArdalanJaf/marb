@@ -4,28 +4,28 @@ import TinyEditor from "./TinyEditor";
 import TextOnlyEditor from "./TextOnlyEditor";
 import createMarkup from "../utils/createMarkup";
 
-export default function About() {
-  const { about } = useSelector((state) => state.content.texts);
+export default function Justice() {
+  const { justice } = useSelector((state) => state.content.texts);
   const { lang, editMode } = useSelector((state) => state.general);
 
   return (
     <div>
       <h1>
         {!editMode ? (
-          about.title[lang]
+          justice.title[lang]
         ) : (
           <TextOnlyEditor
-            keys={["texts", "about", "title", lang]}
-            id={about.title.id}
+            keys={["texts", "justice", "title", lang]}
+            id={justice.title.id}
           />
         )}
       </h1>
       {!editMode ? (
-        <div dangerouslySetInnerHTML={createMarkup(about.body[lang])}></div>
+        <div dangerouslySetInnerHTML={createMarkup(justice.body[lang])}></div>
       ) : (
         <TinyEditor
-          keys={["texts", "about", "body", lang]}
-          id={about.body.id}
+          keys={["texts", "justice", "body", lang]}
+          id={justice.body.id}
         />
       )}
     </div>

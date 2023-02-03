@@ -17,7 +17,7 @@ const initialState = {
       },
     },
   },
-  clientLogos: [],
+  clientLogos: [], //type, link/svg,
   reviews: [],
   editedTracker: { texts: [], reviews: [], clientLogos: [] },
 };
@@ -69,6 +69,5 @@ export const { setAllContent, setText, trackEdit, resetEditTracker } =
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 
 export const selectContent = (state) => state.content;
-// export const selectLang = (state) => state.general.lang;
 
 export default contentSlice.reducer;

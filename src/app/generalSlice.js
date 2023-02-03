@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   lang: "en", // function to check browser language?
+  screen: 0,
 };
 
 export const generalSlice = createSlice({
@@ -15,10 +16,16 @@ export const generalSlice = createSlice({
         lang: action.payload,
       };
     },
+    setScreen: (state, action) => {
+      return {
+        ...state,
+        screen: action.payload,
+      };
+    },
   },
 });
 
-export const { setLang } = generalSlice.actions;
+export const { setLang, setScreen } = generalSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

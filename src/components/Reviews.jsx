@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { selectLang } from "../app/generalSlice";
 import { selectEditMode } from "../app/adminSlice";
 import TextOnlyEditor from "./TextOnlyEditor";
+import { useState } from "react";
 
 export default function Reviews() {
   const { reviews } = useSelector((state) => state.content);
@@ -22,8 +23,7 @@ export default function Reviews() {
               ) : (
                 <TextOnlyEditor keys={["reviews", i, "name"]} id={t.id} />
               )}
-            </div>
-            <div>
+
               {!editMode ? (
                 <p>{t[lang]}</p>
               ) : (
