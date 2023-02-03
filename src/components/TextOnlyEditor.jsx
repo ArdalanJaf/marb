@@ -2,17 +2,15 @@ import React, { useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { useSelector, useDispatch } from "react-redux";
 import { setText } from "../app/contentSlice";
-import { keysToObjTool } from "../utils/keysToObjTool";
+import { navObjWithKeys } from "../utils/navObjWithKeys";
+import htmlTagStripper from "../utils/htmlTagStripper";
+import { trackEdit } from "../app/contentSlice";
 
-export default function TextOnlyEditor({ keys }) {
+export default function TextOnlyEditor({ keys, id }) {
   const dispatch = useDispatch();
   const content = useSelector((state) => state.content);
-  const value = keysToObjTool(content, keys);
   const editorRef = useRef(null);
-
-  function htmlTagStripper(str) {
-    return str.replaceAll(/<[^<>]+>/g, "");
-  }
+  const value = navObjWithKeys(content, keys);
 
   const handleChange = () => {
     dispatch(
@@ -21,6 +19,7 @@ export default function TextOnlyEditor({ keys }) {
         value: htmlTagStripper(editorRef.current.getContent()),
       })
     );
+    dispatch(trackEdit({ id, keys, value }));
   };
 
   return (
@@ -29,7 +28,7 @@ export default function TextOnlyEditor({ keys }) {
         tinymceScriptSrc={process.env.PUBLIC_URL + "/tinymce/tinymce.min.js"}
         onInit={(evt, editor) => (editorRef.current = editor)}
         value={value}
-        onEditorChange={handleChange}
+        onEditorChange={() => handleChange()}
         inline={true}
         init={{
           browser_spellcheck: true,

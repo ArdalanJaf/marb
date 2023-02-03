@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   editMode: false,
   token: "",
+  editedTracker: { texts: [], reviews: [] },
 };
 
 export const adminSlice = createSlice({
@@ -11,8 +12,6 @@ export const adminSlice = createSlice({
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     setEditMode: (state) => {
-      // let copy = { ...state };
-      // copy.editMode = !state.editMode;
       return { ...state, editMode: !state.editMode };
     },
   },
