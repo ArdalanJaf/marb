@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   editMode: false,
   token: "",
-  editedTracker: { texts: [], reviews: [] },
 };
 
 export const adminSlice = createSlice({

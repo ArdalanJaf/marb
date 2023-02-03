@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setEditMode } from "./app/adminSlice";
+import { setEditMode } from "./app/generalSlice";
 import { setAllContent } from "./app/contentSlice";
 import LangSelect from "./components/LangSelect";
 import SaveBtn from "./components/SaveBtn";
@@ -14,6 +14,7 @@ import Contact from "./components/Contact";
 import Reviews from "./components/Reviews";
 import { API_URL } from "./config/API_URL";
 import axios from "axios";
+import { MainFlex } from "./components/styledComponents/MainFlex";
 import "./App.css";
 
 function App() {
@@ -37,16 +38,16 @@ function App() {
 
   return (
     <div className="App">
-      <div>
+      {/* <div>
         <button onClick={() => dispatch(setEditMode())}>
           Edit: {editMode ? "on" : "off"}
         </button>
         <SaveBtn />
         <LangSelect />
-      </div>
+      </div> */}
       {!contentLoaded && <p>Loading...</p>}
       {contentLoaded && (
-        <div className="flex">
+        <MainFlex>
           <Nav />
           <div className="main">
             {screen === 0 && <Landing />}
@@ -56,7 +57,7 @@ function App() {
             {screen === 4 && <About />}
             {screen === 5 && <Contact />}
           </div>
-        </div>
+        </MainFlex>
       )}
     </div>
   );
