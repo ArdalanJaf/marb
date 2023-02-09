@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function BurgerMenu({ bool, onClick }) {
+export default function BurgerMenuIcon({ bool, onClick }) {
   return (
     <StyledBurgerIcon>
       <button
@@ -34,7 +34,7 @@ const StyledBurgerIcon = styled.div`
     transform: translate(-50%, -50%);
   }
 
-  &::before {
+  /* &::before {
     content: "";
     position: absolute;
     top: 50%;
@@ -42,7 +42,7 @@ const StyledBurgerIcon = styled.div`
     width: 4.5em;
     height: 4.5em;
     transform: translate(-50%, -50%);
-  }
+  } */
   &:hover div > div,
   &:focus-within div > div {
     background-color: ${(props) => props.theme.color.highlight};
@@ -52,13 +52,14 @@ const StyledBurgerIcon = styled.div`
   & div {
     position: relative;
     bottom: 8px;
-    width: 40px;
+    width: 32px;
     height: 2px;
     margin: 5px;
     margin-bottom: 10px;
     & > div {
       background-color: #000;
       transition: all 0.15s ease-in-out;
+      pointer-events: none;
     }
   }
 

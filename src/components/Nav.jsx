@@ -4,7 +4,7 @@ import { setScreen, setMobileMode } from "../app/generalSlice";
 import styled from "styled-components";
 import LangSelect from "./LangSelect";
 import MARBLogo from "./MARBLogo";
-import BurgerMenu from "./BurgerMenu";
+import BurgerMenuIcon from "./BurgerMenuIcon";
 
 export default function Nav() {
   const dispatch = useDispatch();
@@ -37,9 +37,13 @@ export default function Nav() {
       </div>
 
       {mobileMode && (
-        <button onClick={() => setShowMenu(!showMenu)}>menu</button>
+        <BurgerMenuIcon
+          onClick={() => setShowMenu(!showMenu)}
+          bool={showMenu}
+        />
+        // <button onClick={() => setShowMenu(!showMenu)}>menu</button>
       )}
-      <BurgerMenu onClick={() => setShowMenu(!showMenu)} bool={showMenu} />
+
       <nav
         className={`${mobileMode ? "mobileNav" : ""} ${
           mobileMode && !showMenu ? "hide" : ""
