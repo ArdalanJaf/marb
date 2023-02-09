@@ -2,11 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   nav: {
-    page1: { cr: "cr page1", en: "en page1", sp: "sp page1", screen: 1 },
-    page2: { cr: "cr page2", en: "en page2", sp: "sp page2", screen: 2 },
-    page3: { cr: "cr page3", en: "en page3", sp: "sp page3", screen: 3 },
-    page4: { cr: "cr page4", en: "en page4", sp: "sp page4", screen: 4 },
-    page5: { cr: "cr page5", en: "en page5", sp: "sp page5", screen: 5 },
+    page1: { cr: "cr page1", en: "Translation", sp: "sp page1", screen: 1 },
+    page2: {
+      cr: "cr page2",
+      en: "Langauge Justice",
+      sp: "sp page2",
+      screen: 2,
+    },
+    page3: { cr: "cr page3", en: "Clients", sp: "sp page3", screen: 3 },
+    page4: { cr: "cr page4", en: "About", sp: "sp page4", screen: 4 },
+    page5: { cr: "cr page5", en: "Contact", sp: "sp page5", screen: 5 },
   },
 };
 

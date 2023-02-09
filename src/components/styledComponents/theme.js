@@ -1,6 +1,8 @@
 export const theme = {
-  landscapeThreshold: "600px",
+  landscapeThreshold: "913px",
   color: {
-    primary: "red",
+    primary: "rgb(47, 161, 129)",
+    light: "rgb(247, 247, 247)",
+    highlight: "white",
   },
 };

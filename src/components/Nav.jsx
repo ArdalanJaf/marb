@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setScreen, setMobileMode } from "../app/generalSlice";
 import styled from "styled-components";
 import LangSelect from "./LangSelect";
+import MARBLogo from "./MARBLogo";
+import BurgerMenu from "./BurgerMenu";
 
 export default function Nav() {
   const dispatch = useDispatch();
@@ -16,7 +18,7 @@ export default function Nav() {
 
   useEffect(() => {
     window.addEventListener("resize", () => dispatch(setMobileMode()));
-    console.log("added event listener");
+    // console.log("added event listener");
   }, []);
 
   useEffect(() => {
@@ -26,20 +28,27 @@ export default function Nav() {
   return (
     <StyledHeader>
       <div onClick={() => handleClick(0)}>
-        <h1>logo</h1>
+        <div>
+          <MARBLogo />
+          {/* <img src="../assets/marb.svg" /> */}
+        </div>
         <h1>MARB </h1>
         {/* <p>{mobileMode ? "true" : "false"}</p> */}
       </div>
-      <LangSelect />
+
       {mobileMode && (
         <button onClick={() => setShowMenu(!showMenu)}>menu</button>
       )}
+      <BurgerMenu onClick={() => setShowMenu(!showMenu)} bool={showMenu} />
       <nav
-        className={`${mobileMode ? "mobileNav" : "desktopNav"} ${
+        className={`${mobileMode ? "mobileNav" : ""} ${
           mobileMode && !showMenu ? "hide" : ""
         }`}
       >
         <ul>
+          <li>
+            <LangSelect />
+          </li>
           {Object.keys(nav).map((k, i) => {
             return (
               <li key={i} onClick={() => handleClick(nav[k].screen)}>
@@ -63,6 +72,7 @@ const StyledHeader = styled.header`
 
   @media (min-width: ${(props) => props.theme.landscapeThreshold}) {
     height: 100vh;
+    min-width: 20%;
     flex-direction: column;
     justify-content: start;
   }
@@ -73,13 +83,40 @@ const StyledHeader = styled.header`
     cursor: pointer;
   }
 
-  /* logo */
+  /* logo + title */
   & > div {
     display: flex;
     align-items: center;
+    position: relative;
+
+    h1 {
+      /* color: white; */
+    }
+
+    /* logo svg */
+    & > div {
+      width: 5em;
+      margin: 0.5em;
+      svg {
+        path {
+          /* stroke: white; */
+        }
+      }
+    }
 
     @media (min-width: ${(props) => props.theme.landscapeThreshold}) {
       display: block;
+      margin-top: 5em;
+
+      h1 {
+        font-size: 5em;
+        margin-top: 0.2em;
+      }
+
+      & > div {
+        width: 10em;
+        margin: auto;
+      }
     }
   }
 
@@ -88,7 +125,7 @@ const StyledHeader = styled.header`
   }
 
   nav {
-    background-color: lightblue;
+    /* background-color: lightblue; */
   }
   .mobileNav {
     position: absolute;
@@ -101,7 +138,14 @@ const StyledHeader = styled.header`
     list-style: none;
     padding: 1em;
     li {
+      color: white;
       margin-bottom: 1em;
+      font-size: 2rem;
+      cursor: pointer;
+
+      &:hover {
+        color: red;
+      }
     }
   }
 

@@ -3,13 +3,14 @@ import { useSelector } from "react-redux";
 import TinyEditor from "./TinyEditor";
 import TextOnlyEditor from "./TextOnlyEditor";
 import createMarkup from "../utils/createMarkup";
+import styled from "styled-components";
 
 export default function Landing() {
   const { landing } = useSelector((state) => state.content.texts);
   const { lang, editMode } = useSelector((state) => state.general);
 
   return (
-    <div>
+    <StyledLanding>
       <h1>
         {!editMode ? (
           landing.title[lang]
@@ -28,6 +29,15 @@ export default function Landing() {
           id={landing.body.id}
         />
       )} */}
-    </div>
+    </StyledLanding>
   );
 }
+
+const StyledLanding = styled.div`
+  background-color: orange;
+  min-height: 100vh;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

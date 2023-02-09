@@ -38,13 +38,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* <div>
-        <button onClick={() => dispatch(setEditMode())}>
-          Edit: {editMode ? "on" : "off"}
-        </button>
-        <SaveBtn />
-        <LangSelect />
-      </div> */}
       {!contentLoaded && <p>Loading...</p>}
       {contentLoaded && (
         <MainFlex>
@@ -56,6 +49,13 @@ function App() {
             {screen === 3 && <Clients />}
             {screen === 4 && <About />}
             {screen === 5 && <Contact />}
+            <div>
+              <button onClick={() => dispatch(setEditMode())}>
+                Edit: {editMode ? "on" : "off"}
+              </button>
+              <SaveBtn />
+              {/* <LangSelect /> */}
+            </div>
           </div>
         </MainFlex>
       )}

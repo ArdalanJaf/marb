@@ -31,7 +31,7 @@ export const generalSlice = createSlice({
       return { ...state, editMode: !state.editMode };
     },
     setMobileMode: (state) => {
-      console.log(state.mobileMode !== isMobileMode());
+      // console.log(state.mobileMode !== isMobileMode());
       if (state.mobileMode !== isMobileMode())
         return { ...state, mobileMode: !state.mobileMode };
     },
