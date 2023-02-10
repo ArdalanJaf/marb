@@ -31,11 +31,12 @@ export default function LangSelect() {
 
 const LangSelectStyled = styled.div`
   display: flex;
-  gap: 1em;
-  padding: 1em;
+  padding: 0.5em;
+  justify-content: space-around;
+  max-width: 160px;
+  margin: auto;
   img {
-    height: 3em;
-    margin: 0.3em;
+    height: 1.6em;
     transition: transform 0.1s ease-in-out;
 
     &:hover {

@@ -1,7 +1,7 @@
 import { theme } from "../components/styledComponents/theme";
 
 export default function isMobileMode(
-  landscapeThreshold = theme.landscapeThreshold
+  landscapeThreshold = theme.breakpoint.desktop
 ) {
   let screenWidth = window.innerWidth;
   if (typeof landscapeThreshold === "string") {
@@ -9,6 +9,6 @@ export default function isMobileMode(
       landscapeThreshold.split("").slice(0, -2).join("")
     );
   }
-  // console.log(screenWidth, landscapeThreshold);
+
   return screenWidth < landscapeThreshold;
 }

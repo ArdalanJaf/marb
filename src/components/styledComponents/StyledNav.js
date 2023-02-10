@@ -11,7 +11,7 @@ export const StyledNav = styled.nav`
     flex-grow: 1;
   }
 
-  @media (max-width: ${(props) => props.theme.landscapeThreshold}) {
+  @media (max-width: ${(props) => props.theme.breakpoint.desktop}) {
     display: flex;
   }
 `;

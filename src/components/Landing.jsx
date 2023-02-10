@@ -4,6 +4,7 @@ import TinyEditor from "./TinyEditor";
 import TextOnlyEditor from "./TextOnlyEditor";
 import createMarkup from "../utils/createMarkup";
 import styled from "styled-components";
+import Slideshow from "./Slideshow";
 
 export default function Landing() {
   const { landing } = useSelector((state) => state.content.texts);
@@ -21,6 +22,8 @@ export default function Landing() {
           />
         )}
       </h1>
+      <Slideshow />
+
       {/* {!editMode ? (
         <div dangerouslySetInnerHTML={createMarkup(landing.body[lang])}></div>
       ) : (
@@ -35,9 +38,13 @@ export default function Landing() {
 
 const StyledLanding = styled.div`
   background-color: orange;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   padding: 1em;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  h1 {
+    font-size: 5em;
+  }
 `;

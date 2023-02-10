@@ -49,16 +49,16 @@ function App() {
             {screen === 3 && <Clients />}
             {screen === 4 && <About />}
             {screen === 5 && <Contact />}
-            <div>
-              <button onClick={() => dispatch(setEditMode())}>
-                Edit: {editMode ? "on" : "off"}
-              </button>
-              <SaveBtn />
-              {/* <LangSelect /> */}
-            </div>
           </div>
         </MainFlex>
       )}
+      <div style={{ backgroundColor: "lightGreen" }}>
+        <button onClick={() => dispatch(setEditMode())}>
+          Edit: {editMode ? "on" : "off"}
+        </button>
+        <SaveBtn />
+        {/* <LangSelect /> */}
+      </div>
     </div>
   );
 }

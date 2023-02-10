@@ -14,6 +14,7 @@ export default function Nav() {
 
   const handleClick = (screen) => {
     dispatch(setScreen(screen));
+    if (mobileMode) setShowMenu(false);
   };
 
   useEffect(() => {
@@ -27,32 +28,30 @@ export default function Nav() {
 
   return (
     <StyledHeader>
-      <div onClick={() => handleClick(0)}>
-        <div>
-          <MARBLogo />
-          {/* <img src="../assets/marb.svg" /> */}
+      <div className="header">
+        <div onClick={() => handleClick(0)}>
+          <div>
+            <MARBLogo />
+            {/* <img src="../assets/marb.svg" /> */}
+          </div>
+          <h1>MARB </h1>
+          {/* <p>{mobileMode ? "true" : "false"}</p> */}
         </div>
-        <h1>MARB </h1>
-        {/* <p>{mobileMode ? "true" : "false"}</p> */}
+
+        {mobileMode && (
+          <BurgerMenuIcon
+            onClick={() => setShowMenu(!showMenu)}
+            bool={showMenu}
+          />
+          // <button onClick={() => setShowMenu(!showMenu)}>menu</button>
+        )}
       </div>
-
-      {mobileMode && (
-        <BurgerMenuIcon
-          onClick={() => setShowMenu(!showMenu)}
-          bool={showMenu}
-        />
-        // <button onClick={() => setShowMenu(!showMenu)}>menu</button>
-      )}
-
       <nav
-        className={`${mobileMode ? "mobileNav" : ""} ${
-          mobileMode && !showMenu ? "hide" : ""
+        className={`${mobileMode ? "dropDownNav" : ""} ${
+          mobileMode && !showMenu ? "hideMenu" : ""
         }`}
       >
         <ul>
-          <li>
-            <LangSelect />
-          </li>
           {Object.keys(nav).map((k, i) => {
             return (
               <li key={i} onClick={() => handleClick(nav[k].screen)}>
@@ -60,6 +59,9 @@ export default function Nav() {
               </li>
             );
           })}
+          <li>
+            <LangSelect />
+          </li>
         </ul>
       </nav>
     </StyledHeader>
@@ -68,17 +70,62 @@ export default function Nav() {
 
 const StyledHeader = styled.header`
   background-color: ${(props) => props.theme.color.primary};
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 1em;
-  position: relative;
-
-  @media (min-width: ${(props) => props.theme.landscapeThreshold}) {
-    height: 100vh;
+  @media (min-width: ${(props) => props.theme.breakpoint.desktop}) {
+    min-height: 100vh;
     min-width: 20%;
-    flex-direction: column;
-    justify-content: start;
+  }
+  .header {
+    background-color: ${(props) => props.theme.color.primary};
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1em;
+    position: relative;
+    z-index: 1;
+
+    @media (min-width: ${(props) => props.theme.breakpoint.desktop}) {
+      /* height: 100vh;
+      min-width: 20%; */
+      flex-direction: column;
+      justify-content: start;
+    }
+
+    /* logo + title */
+    & > div {
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      h1 {
+        /* color: white; */
+      }
+
+      /* logo svg */
+      & > div {
+        width: 5em;
+        margin: 0.5em;
+        svg {
+          path {
+            /* stroke: white; */
+          }
+        }
+      }
+
+      @media (min-width: ${(props) => props.theme.breakpoint.desktop}) {
+        display: block;
+        margin-top: 5em;
+
+        h1 {
+          font-size: 5em;
+          margin-top: 0.2em;
+        }
+
+        & > div {
+          width: 10em;
+          margin: auto;
+        }
+      }
+    }
   }
 
   div,
@@ -87,73 +134,45 @@ const StyledHeader = styled.header`
     cursor: pointer;
   }
 
-  /* logo + title */
-  & > div {
-    display: flex;
-    align-items: center;
-    position: relative;
-
-    h1 {
-      /* color: white; */
-    }
-
-    /* logo svg */
-    & > div {
-      width: 5em;
-      margin: 0.5em;
-      svg {
-        path {
-          /* stroke: white; */
-        }
-      }
-    }
-
-    @media (min-width: ${(props) => props.theme.landscapeThreshold}) {
-      display: block;
-      margin-top: 5em;
-
-      h1 {
-        font-size: 5em;
-        margin-top: 0.2em;
-      }
-
-      & > div {
-        width: 10em;
-        margin: auto;
-      }
-    }
-  }
-
-  .hide {
-    display: none;
-  }
-
   nav {
     /* background-color: lightblue; */
+    background-color: none;
   }
-  .mobileNav {
+  .dropDownNav {
     position: absolute;
-    bottom: 0;
-    transform: translateY(100%);
+    top: 0;
     right: 0;
+    /* transform: translateY(-100%); */
+    transition: transform 0.2s ease-in-out;
+    width: 100%;
+    height: calc(100vh - 54.5px);
+    margin-top: 54.5px;
+    background-color: ${(props) => props.theme.color.light};
+    @media (min-width: ${(props) => props.theme.breakpoint.tablet}) {
+      /* light drop down style*/
+      width: fit-content;
+      height: fit-content;
+      /* background-color: none; */
+    }
+  }
+  .hideMenu {
+    transform: translateY(-100%);
+    /* display: none; */
   }
 
   ul {
     list-style: none;
     padding: 1em;
+    margin: 0;
     li {
-      color: white;
-      margin-bottom: 1em;
+      /* color: white; */
+      margin-top: 1em;
       font-size: 2rem;
-      cursor: pointer;
+      /* cursor: pointer; */
 
       &:hover {
         color: red;
       }
     }
   }
-
-  /* @media (min-width: ${(props) => props.theme.landscapeThreshold}) {
-    display: ;
-  } */
 `;

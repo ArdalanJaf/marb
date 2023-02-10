@@ -10,7 +10,7 @@ export default function BurgerMenuIcon({ bool, onClick }) {
         onClick={onClick}
         checked={bool}
       />
-      <label for="burger-menu__input" aria-label="menu icon" />
+      <label htmlFor="burger-menu__input" aria-label="menu icon" />
       <div className={bool ? "checked" : ""}>
         <div className="i1"></div>
         <div className="i2"></div>
