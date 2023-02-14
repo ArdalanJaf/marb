@@ -74,6 +74,7 @@ const StyledHeader = styled.header`
     min-height: 100vh;
     min-width: 20%;
   }
+
   .header {
     background-color: ${(props) => props.theme.color.primary};
     display: flex;

@@ -14,10 +14,10 @@ import Contact from "./components/Contact";
 import Reviews from "./components/Reviews";
 import { API_URL } from "./config/API_URL";
 import axios from "axios";
-import { MainFlex } from "./components/styledComponents/MainFlex";
+import styled from "styled-components";
 import "./App.css";
 
-function App() {
+export default function App() {
   const dispatch = useDispatch();
   const { screen, editMode } = useSelector((state) => state.general);
   const [contentLoaded, setContentLoaded] = useState(false);
@@ -40,27 +40,51 @@ function App() {
     <div className="App">
       {!contentLoaded && <p>Loading...</p>}
       {contentLoaded && (
-        <MainFlex>
+        <StyledFlexContainer>
           <Nav />
-          <div className="main">
+          <StyledMain>
             {screen === 0 && <Landing />}
             {screen === 1 && <Translation />}
             {screen === 2 && <Justice />}
             {screen === 3 && <Clients />}
             {screen === 4 && <About />}
             {screen === 5 && <Contact />}
-          </div>
-        </MainFlex>
+          </StyledMain>
+        </StyledFlexContainer>
       )}
-      <div style={{ backgroundColor: "lightGreen" }}>
+      {/* <div style={{ backgroundColor: "lightGreen" }}>
         <button onClick={() => dispatch(setEditMode())}>
           Edit: {editMode ? "on" : "off"}
         </button>
         <SaveBtn />
-        {/* <LangSelect /> */}
-      </div>
+      <LangSelect />
+      </div> */}
     </div>
   );
 }
 
-export default App;
+const StyledFlexContainer = styled.div`
+  display: block;
+  /* height: 100vh; */
+  /* overflow-y: scroll; */
+  @media (min-width: ${(props) => props.theme.breakpoint.desktop}) {
+    display: flex;
+  }
+`;
+
+const StyledMain = styled.div`
+  height: calc(100vh - 54.5px);
+  /* background-color: blue; */
+  /* height: 100%; */
+  overflow-y: scroll;
+  & > div {
+    min-height: 100%;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoint.desktop}) {
+    flex: 1;
+    /* min-height: 100vh; */
+    height: 100vh;
+    /* overflow-y: scroll; */
+  }
+`;

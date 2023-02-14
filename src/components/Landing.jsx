@@ -12,7 +12,7 @@ export default function Landing() {
 
   return (
     <StyledLanding>
-      <h1>
+      {/* <h2>
         {!editMode ? (
           landing.title[lang]
         ) : (
@@ -21,7 +21,7 @@ export default function Landing() {
             id={landing.title.id}
           />
         )}
-      </h1>
+      </h2> */}
       <Slideshow />
 
       {/* {!editMode ? (
@@ -40,11 +40,11 @@ const StyledLanding = styled.div`
   background-color: orange;
   /* min-height: 100vh; */
   padding: 1em;
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
 
-  h1 {
+  h2 {
     font-size: 5em;
   }
 `;
