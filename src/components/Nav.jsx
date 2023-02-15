@@ -117,12 +117,12 @@ const StyledHeader = styled.header`
         margin-top: 5em;
 
         h1 {
-          font-size: 5em;
-          margin-top: 0.2em;
+          font-size: 4em;
+          margin-top: 0.7em;
         }
 
         & > div {
-          width: 10em;
+          width: 15em;
           margin: auto;
         }
       }

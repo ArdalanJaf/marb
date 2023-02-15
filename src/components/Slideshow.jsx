@@ -9,14 +9,14 @@ import imgSpeech from "../assets/images/speech.jpg";
 export default function Slideshow() {
   const { landing } = useSelector((state) => state.content.texts);
   const { lang, editMode } = useSelector((state) => state.general);
-  const [btnClicked, setBtnClicked] = useState(false);
+  const [dotClicked, setDotClicked] = useState(false);
   const [slide, setSlide] = useState(1);
   let noOfSlides = 3;
   const dotsMap = []; // for dot buttons
   for (let i = 1; i <= noOfSlides; i++) dotsMap.push(i);
 
   useEffect(() => {
-    if (!btnClicked) {
+    if (!dotClicked) {
       const timer = setTimeout(() => {
         setSlide(slide !== noOfSlides ? slide + 1 : 1);
       }, 3000);
@@ -49,29 +49,28 @@ export default function Slideshow() {
             </h2>
           </StyledSlide>
           <StyledSlide>{/* <img src={imgSpeech} /> */}</StyledSlide>
-          <StyledSlide></StyledSlide>
+          <StyledSlide>
+            <h2>reviews</h2>
+          </StyledSlide>
         </StyledSlider>
 
-        <StyledDots />
-        {dotsMap.map((i) => {
-          return (
-            <button
-              key={i}
-              value={i}
-              onClick={(e) => {
-                setSlide(e.target.value);
-                if (!btnClicked) setBtnClicked(true);
-              }}
-            />
-          );
-        })}
+        <StyledDots>
+          {dotsMap.map((i) => {
+            return (
+              <button
+                key={i}
+                value={i}
+                style={{ opacity: `${slide == i ? "1" : "0.3"}` }}
+                // className={`${slide === i ? "checked" : ""}`}
+                onClick={(e) => {
+                  setSlide(e.target.value);
+                  if (!dotClicked) setDotClicked(true);
+                }}
+              />
+            );
+          })}
+        </StyledDots>
       </StyledSlideshow>
-      <p>
-        {slide} {(100 / noOfSlides).toFixed(2) * (slide - 1)}
-      </p>
-      <p>
-        {slide > 1 ? `${(100 / noOfSlides).toFixed(2) * (slide - 1)}` : "0"}
-      </p>
     </StyledSlideshowContainer>
   );
 }
@@ -90,7 +89,7 @@ const StyledSlideshow = styled.div`
 
 const StyledSlider = styled.div`
   width: 300%;
-  height: 80vh;
+  height: 80vh; //
   transition: transform 0.3s ease-in-out;
   display: flex;
   & > div {
@@ -104,4 +103,18 @@ const StyledSlider = styled.div`
 
 const StyledSlide = styled.div``;
 
-const StyledDots = styled.div``;
+const StyledDots = styled.div`
+  button {
+    border-radius: 50%;
+    height: 1em;
+    width: 1em;
+    margin: 1em 0.4em 0;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+    &:hover {
+      transform: scale(1.3);
+    }
+  }
+`;
