@@ -7,5 +7,6 @@ export const theme = {
     primary: "rgb(47, 161, 129)",
     light: "rgb(247, 247, 247)",
     highlight: "yellow",
+    seeThrough: { red: "rgba(100, 100, 100, 10)", yellow: "yellow" },
   },
 };

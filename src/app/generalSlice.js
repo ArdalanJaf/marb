@@ -4,7 +4,7 @@ import isMobileMode from "../utils/isMobileMode";
 const initialState = {
   lang: "en", // function to check browser language?
   screen: 0,
-  editMode: false,
+  editMode: true,
   // mobileMode: isMobileMode(),
   mobileMode: isMobileMode(),
   size: window.innerWidth,

@@ -16,6 +16,7 @@ import { API_URL } from "./config/API_URL";
 import axios from "axios";
 import styled from "styled-components";
 import "./App.css";
+import EditInterface from "./components/EditInterface";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,8 @@ export default function App() {
   useEffect(() => {
     getAllContent();
   }, []);
+
+  console.log(editMode);
 
   return (
     <div className="App">
@@ -59,6 +62,7 @@ export default function App() {
         <SaveBtn />
       <LangSelect />
       </div> */}
+      {editMode && <EditInterface />}
     </div>
   );
 }
