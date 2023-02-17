@@ -7,7 +7,11 @@ import imgSpeech from "../assets/images/speech.jpg";
 // import imgTeam from "../assets/images/team.jpg";
 
 export default function Slideshow() {
-  const { landing } = useSelector((state) => state.content.texts);
+  const {
+    texts: { landing },
+    reviews,
+  } = useSelector((state) => state.content);
+
   const { lang, editMode } = useSelector((state) => state.general);
   const [dotClicked, setDotClicked] = useState(false);
   const [slide, setSlide] = useState(1);
@@ -48,7 +52,9 @@ export default function Slideshow() {
               )}
             </h2>
           </StyledSlide>
-          <StyledSlide>{/* <img src={imgSpeech} /> */}</StyledSlide>
+          <StyledSlide>
+            <img src={imgSpeech} />
+          </StyledSlide>
           <StyledSlide>
             <h2>reviews</h2>
           </StyledSlide>
@@ -77,10 +83,12 @@ export default function Slideshow() {
 
 const StyledSlideshowContainer = styled.div`
   background-color: darkorange;
-  padding: 1em;
+  /* padding: 1em; */
   /* width: ; */
   height: 100%;
   min-height: 100%;
+  display: flex;
+  align-items: center;
 `;
 
 const StyledSlideshow = styled.div`
@@ -101,7 +109,15 @@ const StyledSlider = styled.div`
   }
 `;
 
-const StyledSlide = styled.div``;
+const StyledSlide = styled.div`
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    object-fit: contain;
+  }
+`;
 
 const StyledDots = styled.div`
   button {

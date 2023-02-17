@@ -82,7 +82,7 @@ const StyledHeader = styled.header`
     align-items: center;
     padding: 0 1em;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 
     @media (min-width: ${(props) => props.theme.breakpoint.desktop}) {
       /* height: 100vh;
@@ -140,6 +140,7 @@ const StyledHeader = styled.header`
     background-color: none;
   }
   .dropDownNav {
+    z-index: 1;
     position: absolute;
     top: 0;
     right: 0;

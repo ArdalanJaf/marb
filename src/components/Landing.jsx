@@ -38,13 +38,20 @@ export default function Landing() {
 
 const StyledLanding = styled.div`
   background-color: orange;
+  position: relative;
   /* min-height: 100vh; */
-  padding: 1em;
+  /* padding: 1em; */
+
   /* display: flex;
   align-items: center;
   justify-content: center; */
 
   h2 {
     font-size: 5em;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoint.tablet}) {
+    min-height: 100vh;
+    height: 100%;
   }
 `;

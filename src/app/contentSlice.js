@@ -17,9 +17,10 @@ const initialState = {
       },
     },
   },
-  clientLogos: [], //type, link/svg,
-  reviews: [],
-  editedTracker: { texts: [], reviews: [], clientLogos: [] },
+  clientLogos: [], // {id, type?, link/svg, name, hide?}
+  reviews: [], // {id, name, en, sp, cr, hide?}
+  sortOrders: [[], []], // reviews, clientLogos
+  editedTracker: { texts: [], reviews: [], clientLogos: [], sortOrders: [] },
 };
 
 export const contentSlice = createSlice({
@@ -57,6 +58,12 @@ export const contentSlice = createSlice({
       let copy = JSON.parse(JSON.stringify(state));
       copy.editedTracker = initialState.editedTracker;
       return copy;
+    },
+    addReview: (state, action) => {
+      // add new review (add straight to DB)
+    },
+    delReview: (state, action) => {
+      // del review from DB
     },
   },
 });
