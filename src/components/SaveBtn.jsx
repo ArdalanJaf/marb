@@ -30,10 +30,11 @@ export default function SaveBtn() {
     }
   };
 
-  const getEditedContent = (content) => {
+  const getEditedContent = (stateContent) => {
+    let content = JSON.parse(JSON.stringify(stateContent));
     let editedContent = {};
     Object.keys(content).forEach((k) => {
-      if (k !== "editedTracker") {
+      if (k !== "editedTracker" && content.editedTracker[k].length > 0) {
         editedContent[k] = flattenObj(content[k]).filter((c) => {
           return content.editedTracker[k].includes(c.id) === true;
         });

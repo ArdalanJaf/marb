@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setEditMode } from "./app/generalSlice";
-import { setAllContent } from "./app/contentSlice";
+import { setAllContent, applySortOrders } from "./app/contentSlice";
 import LangSelect from "./components/LangSelect";
 import SaveBtn from "./components/SaveBtn";
 import Nav from "./components/Nav";
@@ -26,7 +26,9 @@ export default function App() {
   const getAllContent = async () => {
     try {
       const result = await axios.get(API_URL + "/content");
+      // console.log(result);
       dispatch(setAllContent(result.data.content));
+      dispatch(applySortOrders());
       setContentLoaded(true);
     } catch (error) {
       console.log(error);
@@ -37,8 +39,6 @@ export default function App() {
     getAllContent();
   }, []);
 
-  console.log(editMode);
-
   return (
     <div className="App">
       {!contentLoaded && <p>Loading...</p>}
@@ -46,6 +46,8 @@ export default function App() {
         <StyledFlexContainer>
           <Nav />
           <StyledMain>
+            <p>{editMode ? "on" : "off"}</p>
+
             {screen === 0 && <Landing />}
             {screen === 1 && <Translation />}
             {screen === 2 && <Justice />}

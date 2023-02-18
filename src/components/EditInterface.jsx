@@ -4,14 +4,13 @@ import styled from "styled-components";
 import SaveBtn from "./SaveBtn";
 
 export default function EditInterface() {
-  const { about } = useSelector((state) => state.content.texts);
   const { editMode } = useSelector((state) => state.general);
 
   return (
     <>
       {editMode && (
         <StyledPanel className="EDIT">
-          {/* <StyledEditBtn>PREVIEW</StyledEditBtn> */}
+          {/* <StyledEditBtn>PREVIEW</StyledEditBtn>  Need exit button? */}
           <SaveBtn />
         </StyledPanel>
       )}
@@ -38,17 +37,4 @@ const StyledPanel = styled.div`
     top: 0;
     bottom: auto;
   }
-
-  h2 {
-    font-size: 5em;
-    margin: 0;
-  }
-`;
-
-const StyledEditBtn = styled.button`
-  padding: 20px;
-  font-size: 2em;
-  border-radius: 0.8em;
-  border: none;
-  /* background-color: ${(props) => props.theme.color.seeThrough.red}; */
 `;
