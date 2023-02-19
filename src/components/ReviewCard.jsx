@@ -23,19 +23,25 @@ export default function ReviewCard({ review, i }) {
   };
 
   return (
-    <StyledReview key={i}>
-      {!editMode ? (
-        <h3>{r.name}</h3>
-      ) : (
-        <TextOnlyEditor keys={["reviews", i, "name"]} id={r.id} />
-      )}
-      {!editMode ? (
-        <p>{r[lang]}</p>
-      ) : (
-        <TextOnlyEditor keys={["reviews", i, lang]} id={r.id} />
-      )}
+    <StyledReviewCard key={i}>
+      <StyledReviewText>
+        {!editMode ? (
+          <p>{r[lang]}</p>
+        ) : (
+          <TextOnlyEditor keys={["reviews", i, lang]} id={r.id} />
+        )}
+      </StyledReviewText>
+
+      <StyledReviewName>
+        {!editMode ? (
+          <h3>{r.name}</h3>
+        ) : (
+          <TextOnlyEditor keys={["reviews", i, "name"]} id={r.id} />
+        )}
+      </StyledReviewName>
+
       {editMode && (
-        <div>
+        <StyledReviewBtns>
           <button
             onClick={() => handleClick(i, true)}
             disabled={i > 0 ? false : true}
@@ -48,15 +54,44 @@ export default function ReviewCard({ review, i }) {
           >
             down
           </button>
-        </div>
+        </StyledReviewBtns>
       )}
-    </StyledReview>
+    </StyledReviewCard>
   );
 }
 
-const StyledReview = styled.div`
-  background-color: rgba(256, 256, 256, 0.6);
+const StyledReviewCard = styled.div`
+  background-color: lightgreen;
   border-radius: 1em;
+  box-shadow: 5px 5px 20px #6d6b6b40;
   width: 100%;
+  /* max-width: 32%; */
+  padding: 2em;
+  position: relative;
+  height: fit-content;
+  flex: 1;
   /* margin: 0 1em; */
+`;
+
+const StyledReviewName = styled.div`
+  h3 {
+    margin-bottom: 0;
+  }
+`;
+
+const StyledReviewText = styled.div`
+  overflow-wrap: break-word;
+  p {
+    /* display: block; */
+    margin-top: 0;
+    max-width: 100%;
+    font-size: 1.5em;
+  }
+`;
+
+const StyledReviewBtns = styled.div`
+  position: absolute;
+  bottom: -1em;
+  left: 50%;
+  transform: translateX(-50%);
 `;

@@ -57,28 +57,6 @@ export default function Clients() {
 
       <StyledReviewContainer>
         {reviews.map((r, i) => {
-          // console.log(r.id);
-          // if (r.id === 1) return <p>nope</p>;
-          // return (
-          //   <StyledReview key={i}>
-          //     {!editMode ? (
-          //       <h3>{r.name}</h3>
-          //     ) : (
-          //       <TextOnlyEditor keys={["reviews", i, "name"]} id={r.id} />
-          //     )}
-          //     {!editMode ? (
-          //       <p>{r[lang]}</p>
-          //     ) : (
-          //       <TextOnlyEditor keys={["reviews", i, lang]} id={r.id} />
-          //     )}
-          //     {editMode && (
-          //       <div>
-          //         <button>up</button>
-          //         <button>down</button>
-          //       </div>
-          //     )}
-          //   </StyledReview>
-          // );
           return <ReviewCard review={r} i={i} key={i} />;
         })}
       </StyledReviewContainer>
@@ -96,14 +74,5 @@ const StyledReviewContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
-`;
-
-const StyledReview = styled.div`
-  background-color: rgba(256, 256, 256, 0.6);
-  border-radius: 1em;
-  width: 100%;
-  /* margin: 0 1em; */
-
-  p {
-  }
+  justify-content: space-around;
 `;

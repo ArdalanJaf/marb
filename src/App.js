@@ -46,7 +46,7 @@ export default function App() {
         <StyledFlexContainer>
           <Nav />
           <StyledMain>
-            <p>{editMode ? "on" : "off"}</p>
+            {/* <p>{editMode ? "on" : "off"}</p> */}
 
             {screen === 0 && <Landing />}
             {screen === 1 && <Translation />}

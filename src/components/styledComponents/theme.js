@@ -1,7 +1,7 @@
 export const theme = {
   breakpoint: {
     tablet: "600px",
-    desktop: "913px",
+    desktop: "913px", //768px
   },
   color: {
     // primary: "rgb(47, 161, 129)", original colour - a bit dark
