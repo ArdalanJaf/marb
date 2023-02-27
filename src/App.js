@@ -82,6 +82,7 @@ const StyledMain = styled.div`
   height: calc(100vh - 54.5px);
   /* background-color: blue; */
   /* height: 100%; */
+  width: 100%;
   overflow-y: scroll;
   & > div {
     min-height: 100%;

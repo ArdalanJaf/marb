@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import TextOnlyEditor from "./TextOnlyEditor";
 import styled from "styled-components";
 import imgSpeech from "../assets/images/speech.jpg";
+import { StyledBtn } from "./styledComponents/StyledBtns";
+import { setScreen } from "../app/generalSlice";
 
 // import imgTeam from "../assets/images/team.jpg";
 
 export default function Slideshow() {
+  const dispatch = useDispatch();
   const {
     texts: { landing },
     reviews,
@@ -18,6 +21,30 @@ export default function Slideshow() {
   let noOfSlides = 3;
   const dotsMap = []; // for dot buttons
   for (let i = 1; i <= noOfSlides; i++) dotsMap.push(i);
+  let sliderOffset =
+    slide > 1 ? `${(100 / noOfSlides).toFixed(2) * (slide - 1)}` : "0";
+
+  const handleKeyDown = (e) => {
+    switch (e.key) {
+      case "ArrowLeft":
+        setDotClicked(true);
+        setSlide(slide === 1 ? noOfSlides : slide - 1);
+        break;
+      case "ArrowRight":
+        setDotClicked(true);
+        setSlide(slide === noOfSlides ? 1 : slide + 1);
+        break;
+      default:
+        break;
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  });
 
   useEffect(() => {
     if (!dotClicked) {
@@ -35,9 +62,7 @@ export default function Slideshow() {
       <StyledSlideshow>
         <StyledSlider
           style={{
-            transform: `translateX(-${
-              slide > 1 ? `${(100 / noOfSlides).toFixed(2) * (slide - 1)}` : "0"
-            }%)`,
+            transform: `translateX(-${sliderOffset}%)`,
           }}
         >
           <StyledSlide>
@@ -51,15 +76,19 @@ export default function Slideshow() {
                 />
               )}
             </h2>
+            <StyledBtn color="blue" onClick={() => dispatch(setScreen(5))}>
+              Contact Now
+            </StyledBtn>
+            {/* add Call to Action (contact/learn more/testimonials) */}
           </StyledSlide>
-          <StyledSlide>
-            <img src={imgSpeech} />
+          <StyledSlide bgImg={imgSpeech}>
+            {/* <img src={imgSpeech} /> */}
+            <h2>Language Justice</h2>
           </StyledSlide>
           <StyledSlide>
             <h2>reviews</h2>
           </StyledSlide>
         </StyledSlider>
-
         <StyledDots>
           {dotsMap.map((i) => {
             return (
@@ -92,26 +121,32 @@ const StyledSlideshowContainer = styled.div`
 `;
 
 const StyledSlideshow = styled.div`
-  overflow-x: hidden;
+  overflow: hidden;
+  height: 100%;
 `;
 
 const StyledSlider = styled.div`
   width: 300%;
-  height: 80vh; //
+  height: 100%; //
   transition: transform 0.3s ease-in-out;
   display: flex;
-  & > div {
+  /* & > div {
     background-color: blue;
-    width: 100%;
     &:nth-of-type(even) {
       background-color: red;
     }
-  }
+  } */
 `;
 
 const StyledSlide = styled.div`
+  background-image: url(${(props) => props.bgImg});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   img {
@@ -120,6 +155,10 @@ const StyledSlide = styled.div`
 `;
 
 const StyledDots = styled.div`
+  position: absolute;
+  bottom: 1em;
+  left: 50%;
+  transform: translateX(-50%);
   button {
     border-radius: 50%;
     height: 1em;

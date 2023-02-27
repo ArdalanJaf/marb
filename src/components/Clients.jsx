@@ -65,7 +65,7 @@ export default function Clients() {
 }
 
 const StyledClients = styled.div`
-  background-color: yellow;
+  background-color: ${(props) => props.theme.color.yellow};
   padding: 1em;
   max-width: 100vw;
 `;

@@ -37,10 +37,11 @@ export default function Landing() {
 }
 
 const StyledLanding = styled.div`
-  background-color: orange;
+  background-color: ${(props) => props.theme.color.orange};
   position: relative;
   /* min-height: 100vh; */
   /* padding: 1em; */
+  height: 100%;
 
   /* display: flex;
   align-items: center;
@@ -50,7 +51,7 @@ const StyledLanding = styled.div`
     font-size: 5em;
   }
 
-  @media (min-width: ${(props) => props.theme.breakpoint.tablet}) {
+  @media (min-width: ${(props) => props.theme.breakpoint.desktop}) {
     min-height: 100vh;
     height: 100%;
   }
