@@ -84,8 +84,24 @@ export const contentSlice = createSlice({
       return copy;
     },
     addReview: (state, action) => {
-      // add new review (add straight to DB)
-      // also add to sortOrder (new function?)
+      // // add new review
+      // console.log("adding review");
+      // let copy = JSON.parse(JSON.stringify(state));
+      // let newId =
+      //   copy.reviews.sort((a, b) => {
+      //     return a.id > b.id ? -1 : 1;
+      //   })[0].id + 1;
+      // console.log(newId);
+      // copy.reviews.unshift({
+      //   name: "Enter name here",
+      //   cr: "Enter Creole version of review",
+      //   en: "Enter English version of review",
+      //   sp: "Enter Spanish version of review",
+      //   id: newId,
+      // });
+      // // add review to sortOrders
+      // copy.sortOrders.reviews.sortOrder.unshift(newId);
+      // return copy;
     },
     delReview: (state, action) => {
       // del review from DB
@@ -100,6 +116,7 @@ export const {
   resetEditTracker,
   setOrder,
   applySortOrders,
+  addReview,
 } = contentSlice.actions;
 
 // The function below is called a selector and allows us to select a value from

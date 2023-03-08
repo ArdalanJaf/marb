@@ -6,7 +6,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./components/styledComponents/theme";
-import "./index.css";
+import "./styles/index.css";
 import "normalize.css";
 
 const container = document.getElementById("root");

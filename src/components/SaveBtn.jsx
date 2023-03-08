@@ -18,6 +18,7 @@ export default function SaveBtn() {
     try {
       setIsLoading(true);
       let editedContent = getEditedContent(content);
+      console.log(editedContent);
       let res = await axios.post(API_URL + "/content", editedContent);
       setIsLoading(false);
       if (!res.data.error) {

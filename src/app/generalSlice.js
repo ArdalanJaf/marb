@@ -2,12 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import isMobileMode from "../utils/isMobileMode";
 
 const initialState = {
-  lang: "en", // function to check browser language?
-  screen: 3,
+  lang: "en", // function to check browser language ? -> cool loading in three languages thing?
+  screen: 0,
   editMode: false,
-  // mobileMode: isMobileMode(),
-  mobileMode: isMobileMode(),
+  mobileMode: isMobileMode(), // => true || false
   size: window.innerWidth,
+  delCheck: { active: false, confirmed: false },
 };
 
 export const generalSlice = createSlice({
@@ -35,11 +35,22 @@ export const generalSlice = createSlice({
       if (state.mobileMode !== isMobileMode())
         return { ...state, mobileMode: !state.mobileMode };
     },
+    activateDelCheck: (state) => {
+      return { ...state, delCheck: { active: true, confirmed: false } };
+    },
+    resetDelCheck: (state) => {
+      return { ...state, delCheck: { active: false, confirmed: false } };
+    },
   },
 });
 
-export const { setLang, setScreen, setEditMode, setMobileMode } =
-  generalSlice.actions;
+export const {
+  setLang,
+  setScreen,
+  setEditMode,
+  setMobileMode,
+  activateDelCheck,
+} = generalSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

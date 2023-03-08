@@ -15,7 +15,7 @@ import Reviews from "./components/Reviews";
 import { API_URL } from "./config/API_URL";
 import axios from "axios";
 import styled from "styled-components";
-import "./App.css";
+import "./styles/App.css";
 import EditInterface from "./components/EditInterface";
 
 export default function App() {

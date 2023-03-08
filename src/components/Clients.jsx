@@ -71,8 +71,21 @@ const StyledClients = styled.div`
 `;
 
 const StyledReviewContainer = styled.div`
+  /* background-color: grey; */
   display: flex;
+  /* flex-direction: column; */
   flex-wrap: wrap;
   gap: 1em;
-  justify-content: space-around;
+  align-items: center;
+  /* align-content: stretch; */
+  /* max-height: 40em; */
+  & > div {
+    max-width: 50%;
+    /* margin: 0.5em; */
+    flex: 1;
+    /* flex-grow: 1; */
+  }
+  /* display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1em; */
 `;
