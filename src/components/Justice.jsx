@@ -1,15 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import TinyEditor from "./TinyEditor";
-import TextOnlyEditor from "./TextOnlyEditor";
+import TinyEditor from "./subComponents/TinyEditor";
+import TextOnlyEditor from "./subComponents/TextOnlyEditor";
 import createMarkup from "../utils/createMarkup";
+import styled from "styled-components";
 
 export default function Justice() {
   const { justice } = useSelector((state) => state.content.texts);
   const { lang, editMode } = useSelector((state) => state.general);
 
   return (
-    <div>
+    <StyledJustice>
       <h1>
         {!editMode ? (
           justice.title[lang]
@@ -28,6 +29,10 @@ export default function Justice() {
           id={justice.body.id}
         />
       )}
-    </div>
+    </StyledJustice>
   );
 }
+
+const StyledJustice = styled.div`
+  background-color: ${(props) => props.theme.color.blue};
+`;

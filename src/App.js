@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setEditMode } from "./app/generalSlice";
 import { setAllContent, applySortOrders } from "./app/contentSlice";
-import LangSelect from "./components/LangSelect";
-import SaveBtn from "./components/SaveBtn";
+import LangSelect from "./components/subComponents/LangSelect";
+import SaveBtn from "./components/subComponents/SaveBtn";
 import Nav from "./components/Nav";
 import Landing from "./components/Landing";
 import Translation from "./components/Translation";
@@ -11,12 +11,12 @@ import Justice from "./components/Justice";
 import Clients from "./components/Clients";
 import About from "./components/About";
 import Contact from "./components/Contact";
-import Reviews from "./components/Reviews";
+import Reviews from "./components/subComponents/Reviews";
 import { API_URL } from "./config/API_URL";
 import axios from "axios";
 import styled from "styled-components";
 import "./styles/App.css";
-import EditInterface from "./components/EditInterface";
+import EditInterface from "./components/subComponents/EditInterface";
 
 export default function App() {
   const dispatch = useDispatch();

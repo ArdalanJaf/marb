@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addReview, trackEdit } from "../app/contentSlice";
+import { addReview, trackEdit } from "../../app/contentSlice";
 import styled from "styled-components";
 import SaveBtn from "./SaveBtn";
-import { StyledEditBtn } from "./styledComponents/StyledEditBtn";
+import { StyledEditBtn } from "../styledComponents/StyledEditBtn";
+import StyledPopout from "../styledComponents/Popout.styled";
 
 export default function EditInterface() {
   const dispatch = useDispatch();
   const { editMode, screen } = useSelector((state) => state.general);
   const { sortOrders } = useSelector((state) => state.content);
+  const [addRevClicked, setAddRevClicked] = useState(false);
+  const [addClientClicked, setAddClientClicked] = useState(false);
 
   const handleAddReview = () => {
     // dispatch(addReview());
@@ -21,6 +24,7 @@ export default function EditInterface() {
     // );
     // fuck this? just add new review straight to SQL
     // so new Review brings up new review panel.
+    // add -> input name (-> company?) -> quote -> ADD -> sql creates it.
   };
   return (
     <>
@@ -29,10 +33,22 @@ export default function EditInterface() {
           <StyledPanel className="EDIT">
             {/* <StyledEditBtn>PREVIEW</StyledEditBtn>  Need exit button? */}
             {screen === 3 && (
-              <StyledEditBtn onClick={() => handleAddReview()}>
-                ADD REVIEW
-              </StyledEditBtn>
+              <>
+                <StyledEditBtn onClick={() => setAddRevClicked(true)}>
+                  ADD REVIEW
+                </StyledEditBtn>
+                <StyledEditBtn onClick={() => setAddClientClicked(true)}>
+                  ADD CLIENT
+                </StyledEditBtn>
+              </>
             )}
+            {screen === 3 && addRevClicked && (
+              <StyledPopout> form for name + quote</StyledPopout>
+            )}
+            {screen === 3 && addClientClicked && (
+              <StyledPopout> form for name + quote</StyledPopout>
+            )}
+
             <SaveBtn />
           </StyledPanel>
         </>

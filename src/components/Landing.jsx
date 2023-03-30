@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import TinyEditor from "./TinyEditor";
-import TextOnlyEditor from "./TextOnlyEditor";
+import TinyEditor from "./subComponents/TinyEditor";
+import TextOnlyEditor from "./subComponents/TextOnlyEditor";
 import createMarkup from "../utils/createMarkup";
 import styled from "styled-components";
-import Slideshow from "./Slideshow";
+import Slideshow from "./subComponents/Slideshow";
 
 export default function Landing() {
   const { landing } = useSelector((state) => state.content.texts);

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import TinyEditor from "./TinyEditor";
-import TextOnlyEditor from "./TextOnlyEditor";
+import TinyEditor from "./subComponents/TinyEditor";
+import TextOnlyEditor from "./subComponents/TextOnlyEditor";
 import createMarkup from "../utils/createMarkup";
 import styled from "styled-components";
-import ReviewCard from "./ReviewCard";
+import ReviewCard from "./subComponents/ReviewCard";
 
 export default function Clients() {
   const {
@@ -71,19 +71,13 @@ const StyledClients = styled.div`
 `;
 
 const StyledReviewContainer = styled.div`
-  /* background-color: grey; */
   display: flex;
-  /* flex-direction: column; */
   flex-wrap: wrap;
   gap: 1em;
   align-items: center;
-  /* align-content: stretch; */
-  /* max-height: 40em; */
   & > div {
     max-width: 50%;
-    /* margin: 0.5em; */
     flex: 1;
-    /* flex-grow: 1; */
   }
   /* display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

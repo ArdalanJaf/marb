@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { useSelector, useDispatch } from "react-redux";
-import { setText } from "../app/contentSlice";
-import { navObjWithKeys } from "../utils/navObjWithKeys";
-import { trackEdit } from "../app/contentSlice";
+import { setText } from "../../app/contentSlice";
+import { navObjWithKeys } from "../../utils/navObjWithKeys";
+import { trackEdit } from "../../app/contentSlice";
 
 export default function TinyEditor({ keys, id }) {
   const dispatch = useDispatch();

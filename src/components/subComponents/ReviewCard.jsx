@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { activateDelCheck } from "../app/generalSlice";
+import { activateDelCheck } from "../../app/generalSlice";
 import {
   setOrder,
   applySortOrders,
   trackEdit,
   delReview,
-} from "../app/contentSlice";
-import { StyledEditBtn } from "./styledComponents/StyledEditBtn";
+} from "../../app/contentSlice";
+import { StyledEditBtn } from "../styledComponents/StyledEditBtn";
 import TextOnlyEditor from "./TextOnlyEditor";
 import styled from "styled-components";
 import axios from "axios";
-import { API_URL } from "../config/API_URL";
+import { API_URL } from "../../config/API_URL";
 
 export default function ReviewCard({ review, i }) {
   const dispatch = useDispatch();

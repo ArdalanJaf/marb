@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import TinyEditor from "./TinyEditor";
-import TextOnlyEditor from "./TextOnlyEditor";
+import TinyEditor from "./subComponents/TinyEditor";
+import TextOnlyEditor from "./subComponents/TextOnlyEditor";
 import createMarkup from "../utils/createMarkup";
 
 export default function Translation() {

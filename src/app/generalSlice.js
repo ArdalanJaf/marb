@@ -4,7 +4,7 @@ import isMobileMode from "../utils/isMobileMode";
 const initialState = {
   lang: "en", // function to check browser language ? -> cool loading in three languages thing?
   screen: 0,
-  editMode: false,
+  editMode: true,
   mobileMode: isMobileMode(), // => true || false
   size: window.innerWidth,
   delCheck: { active: false, confirmed: false },

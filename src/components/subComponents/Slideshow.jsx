@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TextOnlyEditor from "./TextOnlyEditor";
 import styled from "styled-components";
-import imgSpeech from "../assets/images/speech.jpg";
-import { StyledBtn } from "./styledComponents/StyledBtns";
-import { setScreen } from "../app/generalSlice";
+import imgSpeech from "../../assets/images/speech.jpg";
+import { StyledBtn } from "../styledComponents/StyledBtns";
+import { setScreen } from "../../app/generalSlice";
 
 // import imgTeam from "../assets/images/team.jpg";
 

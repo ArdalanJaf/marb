@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setLang, selectLang } from "../app/generalSlice";
+import { setLang, selectLang } from "../../app/generalSlice";
 import styled from "styled-components";
-import crIcon from "../assets/icons/haiti.png";
-import enIcon from "../assets/icons/english.png";
-import spIcon from "../assets/icons/spain.png";
+import crIcon from "../../assets/icons/haiti.png";
+import enIcon from "../../assets/icons/english.png";
+import spIcon from "../../assets/icons/spain.png";
 
 export default function LangSelect() {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ export default function LangSelect() {
 
 const LangSelectStyled = styled.div`
   display: flex;
-  padding: 0.5em;
+  padding: 0 0.5em;
   justify-content: space-around;
   max-width: 160px;
   margin: auto;

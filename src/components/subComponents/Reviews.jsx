@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectLang } from "../app/generalSlice";
-import { selectEditMode } from "../app/adminSlice";
+import { selectLang } from "../../app/generalSlice";
+import { selectEditMode } from "../../app/adminSlice";
 import TextOnlyEditor from "./TextOnlyEditor";
 import { useState } from "react";
 

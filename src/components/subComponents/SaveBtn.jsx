@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectContent } from "../app/contentSlice";
+import { selectContent } from "../../app/contentSlice";
 import axios from "axios";
-import { API_URL } from "../config/API_URL";
-import flattenObj from "../utils/flattenObj";
-import { resetEditTracker } from "../app/contentSlice";
+import { API_URL } from "../../config/API_URL";
+import flattenObj from "../../utils/flattenObj";
+import { resetEditTracker } from "../../app/contentSlice";
 import { RaceBy } from "@uiball/loaders";
-import { StyledEditBtn } from "./styledComponents/StyledEditBtn";
+import { StyledEditBtn } from "../styledComponents/StyledEditBtn";
 
 export default function SaveBtn() {
   const dispatch = useDispatch();

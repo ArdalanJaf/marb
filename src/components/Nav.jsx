@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setScreen, setMobileMode } from "../app/generalSlice";
 import styled from "styled-components";
-import LangSelect from "./LangSelect";
-import MARBLogo from "./MARBLogo";
-import BurgerMenuIcon from "./BurgerMenuIcon";
+import LangSelect from "./subComponents/LangSelect";
+import MARBLogo from "./subComponents/MARBLogo";
+import BurgerMenuIcon from "./subComponents/BurgerMenuIcon";
 
 export default function Nav() {
   const dispatch = useDispatch();
@@ -71,11 +71,18 @@ export default function Nav() {
               </li>
             );
           })}
-          <li>
-            <LangSelect />
-          </li>
+          {mobileMode && (
+            <li>
+              <LangSelect />
+            </li>
+          )}
         </ul>
       </nav>
+      {!mobileMode && (
+        <div className="FullScreenLang">
+          <LangSelect />
+        </div>
+      )}
     </StyledHeader>
   );
 }
@@ -83,8 +90,10 @@ export default function Nav() {
 const StyledHeader = styled.header`
   background-color: ${(props) => props.theme.color.primary};
   @media (min-width: ${(props) => props.theme.breakpoint.desktop}) {
-    min-height: 100vh;
-    min-width: 20%;
+    height: 100vh;
+    min-width: 20%; //
+    position: relative;
+    /* display: sticky; */
   }
 
   .header {
@@ -126,15 +135,21 @@ const StyledHeader = styled.header`
 
       @media (min-width: ${(props) => props.theme.breakpoint.desktop}) {
         display: block;
-        margin-top: 5em;
+        /* margin: 5em 0 3.5em; */
+        margin-top: calc(100vw / 20);
+        margin-bottom: calc(100vw / 30);
 
         h1 {
-          font-size: 4em;
-          margin-top: 0.7em;
+          /* font-size: 3em; */
+          font-size: calc(100vw / 40);
+          margin: 0;
+          margin-top: calc(100vw / 120);
         }
 
+        /*logo*/
         & > div {
-          width: 15em;
+          /* width: 15em; */
+          width: calc(100vw / 8);
           margin: auto;
         }
       }
@@ -150,6 +165,7 @@ const StyledHeader = styled.header`
   nav {
     /* background-color: lightblue; */
     background-color: none;
+    /* height: 100%; */
   }
   .dropDownNav {
     z-index: 1;
@@ -166,6 +182,7 @@ const StyledHeader = styled.header`
       /* light drop down style*/
       width: fit-content;
       height: fit-content;
+      /* min-height: 50%; */
       /* background-color: none; */
     }
   }
@@ -178,15 +195,31 @@ const StyledHeader = styled.header`
     list-style: none;
     padding: 1em;
     margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     li {
       /* color: white; */
-      margin-top: 1em;
+      /* margin-top: 1em; */
       font-size: 2rem;
+      margin: 0.7em;
       /* cursor: pointer; */
+
+      &:last-of-type {
+        /* margin-bottom: 1em; */
+      }
 
       &:hover {
         color: red;
       }
     }
+  }
+
+  .FullScreenLang {
+    font-size: 2rem;
+    width: 100%;
+    position: absolute;
+    bottom: calc(100vw / 30);
   }
 `;
