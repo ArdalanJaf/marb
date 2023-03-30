@@ -11,6 +11,7 @@ export const theme = {
     yellow: "hsl(62deg 64% 56%)",
     light: "rgb(247, 247, 247)",
     dark: "rgb(50, 50, 50)",
+    red: "#ff3838",
     highlight: "yellow",
     seeThrough: { red: "rgba(100, 100, 100, 10)", yellow: "yellow" },
   },

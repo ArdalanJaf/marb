@@ -3,8 +3,41 @@ import { useSelector, useDispatch } from "react-redux";
 import { addReview, trackEdit } from "../../app/contentSlice";
 import styled from "styled-components";
 import SaveBtn from "./SaveBtn";
-import { StyledEditBtn } from "../styledComponents/StyledEditBtn";
+import NewClientForm from "./NewClientForm";
+import { StyledEditBtn } from "../styledComponents/EditBtn.styled";
 import StyledPopout from "../styledComponents/Popout.styled";
+
+const StyledPanel = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  /* height: 100px; */
+  /* background-color: red; */
+  z-index: 99;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  padding: 1em;
+  gap: 1em;
+
+  @media (min-width: ${(props) => props.theme.breakpoint.desktop}) {
+    /* top: 0; */
+    /* bottom: auto; */
+  }
+`;
+
+const StyledNewContainer = styled.div`
+  position: fixed;
+  background-color: ${(props) => props.theme.color.dark};
+  color: ${(props) => props.theme.color.light};
+  padding: 3em;
+  border-radius: 1em;
+  z-index: 99999;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+`;
 
 export default function EditInterface() {
   const dispatch = useDispatch();
@@ -43,10 +76,13 @@ export default function EditInterface() {
               </>
             )}
             {screen === 3 && addRevClicked && (
-              <StyledPopout> form for name + quote</StyledPopout>
+              <StyledPopout>
+                {" "}
+                <NewClientForm closeFn={setAddRevClicked} />
+              </StyledPopout>
             )}
             {screen === 3 && addClientClicked && (
-              <StyledPopout> form for name + quote</StyledPopout>
+              <StyledPopout> form for name + logo</StyledPopout>
             )}
 
             <SaveBtn />
@@ -56,36 +92,3 @@ export default function EditInterface() {
     </>
   );
 }
-
-const StyledPanel = styled.div`
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100vw;
-  /* height: 100px; */
-  /* background-color: red; */
-  z-index: 99;
-  display: flex;
-  justify-content: end;
-  align-items: end;
-  padding: 1em;
-  gap: 1em;
-  opacity: 0.5;
-
-  @media (min-width: ${(props) => props.theme.breakpoint.desktop}) {
-    top: 0;
-    bottom: auto;
-  }
-`;
-
-const StyledNewContainer = styled.div`
-  position: fixed;
-  background-color: ${(props) => props.theme.color.dark};
-  color: ${(props) => props.theme.color.light};
-  padding: 3em;
-  border-radius: 1em;
-  z-index: 99999;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-`;

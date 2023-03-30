@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import TextOnlyEditor from "./TextOnlyEditor";
 import styled from "styled-components";
 import imgSpeech from "../../assets/images/speech.jpg";
-import { StyledBtn } from "../styledComponents/StyledBtns";
+import { StyledBtn } from "../styledComponents/Btn.styled";
 import { setScreen } from "../../app/generalSlice";
 
 // import imgTeam from "../assets/images/team.jpg";

@@ -7,7 +7,7 @@ import {
   trackEdit,
   delReview,
 } from "../../app/contentSlice";
-import { StyledEditBtn } from "../styledComponents/StyledEditBtn";
+import { StyledEditBtn } from "../styledComponents/EditBtn.styled";
 import TextOnlyEditor from "./TextOnlyEditor";
 import styled from "styled-components";
 import axios from "axios";

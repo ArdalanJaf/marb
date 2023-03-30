@@ -7,4 +7,5 @@ export const StyledEditBtn = styled.button`
   border: none;
   background-color: white;
   color: black;
+  opacity: 0.5;
 `;

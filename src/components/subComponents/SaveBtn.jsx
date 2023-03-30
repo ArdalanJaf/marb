@@ -6,7 +6,7 @@ import { API_URL } from "../../config/API_URL";
 import flattenObj from "../../utils/flattenObj";
 import { resetEditTracker } from "../../app/contentSlice";
 import { RaceBy } from "@uiball/loaders";
-import { StyledEditBtn } from "../styledComponents/StyledEditBtn";
+import { StyledEditBtn } from "../styledComponents/EditBtn.styled";
 
 export default function SaveBtn() {
   const dispatch = useDispatch();
@@ -50,7 +50,7 @@ export default function SaveBtn() {
   };
 
   return (
-    <div>
+    <>
       <StyledEditBtn
         onClick={() => handleSave()}
         disabled={hasEdited(content.editedTracker) ? false : true}
@@ -58,6 +58,6 @@ export default function SaveBtn() {
         {isLoading ? <RaceBy size={35} color="#231F20" /> : "SAVE"}
       </StyledEditBtn>
       {errorMsg && <p>{errorMsg}</p>}
-    </div>
+    </>
   );
 }
